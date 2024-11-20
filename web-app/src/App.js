@@ -1,20 +1,39 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import "./styles.scss";
 
-import HomePage from './pages/home'
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Box } from "@mui/material";
 
-import './styles/main.scss'
+import { Provider } from "react-redux";
+import { Store } from "./redux/store.tsx";
+
+import HomePage from "./pages/home/page.tsx";
+import QuizPage from "./pages/quiz/page.tsx";
+import ResultPage from "./pages/result/page.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/quiz",
+    element: <QuizPage />,
+  },
+  {
+    path: "/result",
+    element: <ResultPage />,
+  },
+]);
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route element={<HomePage />} path="/" />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  )
+    <Provider store={Store}>
+      <Box className="App">
+        <RouterProvider router={router} />
+      </Box>
+    </Provider>
+  );
 }
 
-export default App
+export default App;
