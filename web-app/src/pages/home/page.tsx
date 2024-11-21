@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import {
-  setCorrectAnswers,
   setCurrentQuestionIndex,
   setUserAnswers,
 } from '../../redux/App/action.tsx';
@@ -22,9 +21,9 @@ export default function HomePage() {
   }, []);
 
   const clearStates = () => {
+    localStorage.removeItem('correctAnswers');
+    localStorage.removeItem('userAnswers');
     dispatch(setCurrentQuestionIndex(0));
-    dispatch(setCorrectAnswers(0));
-    dispatch(setUserAnswers([]));
   };
 
   return (

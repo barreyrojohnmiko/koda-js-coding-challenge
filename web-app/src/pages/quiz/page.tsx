@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { Box, Button, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,12 +12,17 @@ import {
 } from '../../redux/App/action.tsx';
 
 import he from 'he';
+import { loadQuizData } from '../../services/AppService.tsx';
 
 export default function QuizPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { quizData, currentQuestionIndex, correctAnswers, userAnswers } =
     useSelector((state: any) => state.appReducers);
+
+  useEffect(() => {
+    loadQuizData();
+  }, []);
 
   const handleAnswer = (answer: string) => {
     const correctAnswer = quizData[currentQuestionIndex].correct_answer;
@@ -31,6 +36,8 @@ export default function QuizPage() {
     if (currentQuestionIndex < quizData.length - 1) {
       dispatch(setCurrentQuestionIndex(currentQuestionIndex + 1));
     } else {
+      localStorage.setItem('correctAnswers', JSON.stringify(correctAnswers));
+      // localStorage.setItem('userAnswers', userAnswers);
       navigate('/result');
     }
   };
@@ -39,7 +46,12 @@ export default function QuizPage() {
 
   return (
     <Box className="page-container">
-      <Box className="quiz-container">
+      <Box
+        className="quiz-container"
+        sx={{
+          justifyContent: quizData.length === 0 ? 'center' : 'space-between',
+        }}
+      >
         {quizData.length > 0 ? (
           <>
             <Typography className="placeholder">

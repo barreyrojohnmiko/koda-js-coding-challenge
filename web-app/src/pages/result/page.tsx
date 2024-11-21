@@ -1,17 +1,22 @@
 import './styles.scss';
 
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
 import ResultListView from '../../views/resultList/ResultList.tsx';
+import { loadQuizData } from '../../services/AppService.tsx';
 
 export default function ResultPage() {
   const { quizData, correctAnswers } = useSelector(
     (state: any) => state.appReducers
   );
+
+  useEffect(() => {
+    loadQuizData();
+  }, []);
 
   return (
     <Box className="page-container">
