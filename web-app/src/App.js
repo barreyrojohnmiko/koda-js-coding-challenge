@@ -31,7 +31,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={Store}>
-      <Box className="App">
+      <Box className="app-container">
         <LoaderView />
 
         <RouterProvider router={router} />
