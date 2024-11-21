@@ -38,38 +38,46 @@ export default function QuizPage() {
   const currentQuestion = quizData[currentQuestionIndex];
 
   return (
-    <Box className="quiz-container">
-      {quizData.length > 0 ? (
-        <>
-          <Typography variant="h3" className="placeholder">
-            {currentQuestion?.category.replace(/&amp;/g, '&')}
-          </Typography>
+    <Box className="page-container">
+      <Box className="quiz-container">
+        {quizData.length > 0 ? (
+          <>
+            <Typography className="placeholder">
+              {currentQuestion?.category.replace(/&amp;/g, '&')}
+            </Typography>
 
-          <Box className="body-container">
-            <Box className="question-container">
-              <Typography>{he.decode(currentQuestion?.question)}</Typography>
+            <Box className="body-container">
+              <Box className="question-container">
+                <Typography>{he.decode(currentQuestion?.question)}</Typography>
+              </Box>
+
+              <Typography className="pagination">
+                {currentQuestionIndex + 1} / {quizData.length}
+              </Typography>
             </Box>
 
-            <Typography className="pagination">
-              {currentQuestionIndex + 1} / {quizData.length}
-            </Typography>
-          </Box>
+            <Box className="btn-container">
+              <Button
+                className="btn-command"
+                onClick={() => handleAnswer('True')}
+              >
+                True
+              </Button>
 
-          <Box className="btn-container">
-            <Button className="btn-begin" onClick={() => handleAnswer('True')}>
-              TRUE
-            </Button>
-
-            <Button className="btn-begin" onClick={() => handleAnswer('False')}>
-              FALSE
-            </Button>
-          </Box>
-        </>
-      ) : (
-        <Typography variant="h3" className="placeholder">
-          Loading questions...
-        </Typography>
-      )}
+              <Button
+                className="btn-command"
+                onClick={() => handleAnswer('False')}
+              >
+                False
+              </Button>
+            </Box>
+          </>
+        ) : (
+          <Typography variant="h3" className="placeholder">
+            Loading questions...
+          </Typography>
+        )}
+      </Box>
     </Box>
   );
 }
