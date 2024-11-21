@@ -1,4 +1,8 @@
-import { setCorrectAnswers, setQuizData, setUserAnswers } from '../redux/App/action.tsx';
+import {
+  setCorrectAnswers,
+  setQuizData,
+  setUserAnswers,
+} from '../redux/App/action.tsx';
 import { Store } from '../redux/store.tsx';
 
 import axios from 'axios';
@@ -16,7 +20,7 @@ export const fetchQuizData = async () => {
       'https://opentdb.com/api.php?amount=10&difficulty=easy&type=boolean'
     );
 
-    console.log('responseeee: ', response)
+    console.log('responseeee: ', response);
     localStorage.setItem('quizData', JSON.stringify(response.data.results));
     return response;
   } catch (error) {
@@ -44,10 +48,9 @@ export const loadQuizData = async () => {
     Store.dispatch(setCorrectAnswers(0));
   }
 
-  // if (cachedUserAnswers) {
-  //   Store.dispatch(setUserAnswers(cachedUserAnswers));
-  //   console.log(cachedUserAnswers)
-  // } else {
-  //   Store.dispatch(setUserAnswers([]));
-  // }
+  if (cachedUserAnswers) {
+    Store.dispatch(setUserAnswers(JSON.parse(cachedUserAnswers)));
+  } else {
+    Store.dispatch(setUserAnswers([]));
+  }
 };

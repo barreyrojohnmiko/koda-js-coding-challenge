@@ -37,7 +37,7 @@ export default function QuizPage() {
       dispatch(setCurrentQuestionIndex(currentQuestionIndex + 1));
     } else {
       localStorage.setItem('correctAnswers', JSON.stringify(correctAnswers));
-      // localStorage.setItem('userAnswers', userAnswers);
+      localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
       navigate('/result');
     }
   };
@@ -55,7 +55,7 @@ export default function QuizPage() {
         {quizData.length > 0 ? (
           <>
             <Typography className="placeholder">
-              {currentQuestion?.category.replace(/&amp;/g, '&')}
+              {currentQuestion?.category?.replace(/&amp;/g, '&')}
             </Typography>
 
             <Box className="body-container">

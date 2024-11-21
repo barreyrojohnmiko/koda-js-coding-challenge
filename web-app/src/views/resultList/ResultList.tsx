@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { Box, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -10,7 +10,7 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import he from 'he';
 
-const AnswerIcon = ({ isCorrect }: { isCorrect: boolean }) => {
+const renderAnswerIcon = (isCorrect: boolean) => {
   return isCorrect ? (
     <CheckOutlinedIcon sx={{ fontSize: '30px', color: '#0EC44C' }} />
   ) : (
@@ -29,7 +29,7 @@ const ResultListView = React.memo(() => {
 
     return (
       <Box key={question.id || index} className="results-list-container">
-        <AnswerIcon isCorrect={isCorrect} />
+        {renderAnswerIcon(isCorrect)}
 
         <Typography variant="h6">{he.decode(question.question)}</Typography>
       </Box>

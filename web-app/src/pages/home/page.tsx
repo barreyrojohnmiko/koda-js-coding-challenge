@@ -5,10 +5,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
-import {
-  setCurrentQuestionIndex,
-  setUserAnswers,
-} from '../../redux/App/action.tsx';
+import { setCurrentQuestionIndex } from '../../redux/App/action.tsx';
 
 import { fetchQuizData } from '../../services/AppService.tsx';
 
