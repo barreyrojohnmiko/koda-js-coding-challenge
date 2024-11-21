@@ -3,6 +3,7 @@ import {
   SET_CURRENT_QUESTION_INDEX,
   SET_CORRECT_ANSWERS,
   SET_USER_ANSWERS,
+  SET_IS_LOADING,
 } from "./action.tsx";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   currentQuestionIndex: 0,
   correctAnswers: 0,
   userAnswers: [],
+  isLoading: false,
 };
 
 const appReducers = (state = initialState, action: any) => {
@@ -22,6 +24,8 @@ const appReducers = (state = initialState, action: any) => {
       return { ...state, correctAnswers: action.payload };
     case SET_USER_ANSWERS:
       return { ...state, userAnswers: action.payload };
+    case SET_IS_LOADING:
+      return { ...state, isLoading: action.payload };
     default:
       return state;
   }

@@ -1,13 +1,14 @@
-import './styles.scss';
+import "./styles.scss";
 
-import { Box, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Box, Typography } from "@mui/material";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import { useDispatch } from 'react-redux';
-import { setCurrentQuestionIndex } from '../../redux/App/action.tsx';
+import { useDispatch } from "react-redux";
+import { setCurrentQuestionIndex } from "../../redux/App/action.tsx";
 
-import { fetchQuizData } from '../../services/AppService.tsx';
+import { fetchQuizData } from "../../services/AppService.tsx";
+import LoaderView from "../../views/loader/Loader.tsx";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -18,13 +19,16 @@ export default function HomePage() {
   }, []);
 
   const clearStates = () => {
-    localStorage.removeItem('correctAnswers');
-    localStorage.removeItem('userAnswers');
+    localStorage.removeItem("correctAnswers");
+    localStorage.removeItem("userAnswers");
+    localStorage.removeItem("quizData");
     dispatch(setCurrentQuestionIndex(0));
   };
 
   return (
     <Box className="page-container">
+      <LoaderView />
+
       <Box className="home-container">
         <Typography className="title">
           Welcome to the <br />
