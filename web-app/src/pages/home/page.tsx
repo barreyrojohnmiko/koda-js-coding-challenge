@@ -1,26 +1,26 @@
-import "./styles.scss";
+import './styles.scss';
 
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { Box, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { Box, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setCorrectAnswers,
   setCurrentQuestionIndex,
-  setQuizData,
   setUserAnswers,
-} from "../../redux/App/action.tsx";
+} from '../../redux/App/action.tsx';
+import { fetchQuizData } from '../../services/AppService.tsx';
 
 export default function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     clearStates();
+    fetchQuizData();
   }, []);
 
   const clearStates = () => {
-    dispatch(setQuizData([]));
     dispatch(setCurrentQuestionIndex(0));
     dispatch(setCorrectAnswers(0));
     dispatch(setUserAnswers([]));
