@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import ResultListView from '../../views/resultList/ResultList.tsx';
+
 import { loadQuizData } from '../../services/AppService.tsx';
 
 export default function ResultPage() {
