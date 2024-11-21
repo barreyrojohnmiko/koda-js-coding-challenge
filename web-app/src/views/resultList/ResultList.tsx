@@ -12,9 +12,9 @@ import he from 'he';
 
 const renderAnswerIcon = (isCorrect: boolean) => {
   return isCorrect ? (
-    <CheckOutlinedIcon sx={{ fontSize: '30px', color: '#0EC44C' }} />
+    <CheckOutlinedIcon className="icon-correct" />
   ) : (
-    <ClearOutlinedIcon sx={{ fontSize: '30px', color: '#F31F1F' }} />
+    <ClearOutlinedIcon className="icon-wrong" />
   );
 };
 
