@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { setCurrentQuestionIndex } from "../../redux/App/action.tsx";
 
 import { fetchQuizData } from "../../services/AppService.tsx";
-import LoaderView from "../../views/loader/Loader.tsx";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -27,8 +26,6 @@ export default function HomePage() {
 
   return (
     <Box className="page-container">
-      <LoaderView />
-
       <Box className="home-container">
         <Typography className="title">
           Welcome to the <br />

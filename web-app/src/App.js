@@ -11,6 +11,8 @@ import HomePage from "./pages/home/page.tsx";
 import QuizPage from "./pages/quiz/page.tsx";
 import ResultPage from "./pages/result/page.tsx";
 
+import LoaderView from "./views/loader/Loader.tsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +32,8 @@ function App() {
   return (
     <Provider store={Store}>
       <Box className="App">
+        <LoaderView />
+
         <RouterProvider router={router} />
       </Box>
     </Provider>
