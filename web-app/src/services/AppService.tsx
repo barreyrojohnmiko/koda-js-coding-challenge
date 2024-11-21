@@ -7,6 +7,10 @@ import { Store } from '../redux/store.tsx';
 
 import axios from 'axios';
 
+const axiosInstance = axios.create({
+  baseURL: 'https://opentdb.com',
+});
+
 export const fetchQuizData = async () => {
   const cachedQuizData = localStorage.getItem('quizData');
 
@@ -16,11 +20,10 @@ export const fetchQuizData = async () => {
   }
 
   try {
-    const response = await axios.get(
-      'https://opentdb.com/api.php?amount=10&difficulty=easy&type=boolean'
+    const response = await axiosInstance.get(
+      '/api.php?amount=10&difficulty=easy&type=boolean'
     );
 
-    console.log('responseeee: ', response);
     localStorage.setItem('quizData', JSON.stringify(response.data.results));
     return response;
   } catch (error) {
