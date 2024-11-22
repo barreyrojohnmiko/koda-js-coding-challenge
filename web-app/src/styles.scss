@@ -1,9 +1,14 @@
 .app-container {
+  overflow: hidden;
   min-height: 100vh;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-content: center;
+
+  background-image: url('./images/bg.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .page-container {
