@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Divider, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,8 +11,12 @@ import {
   setUserAnswers,
 } from '../../redux/App/action.tsx';
 
-import he from 'he';
 import { loadQuizData } from '../../services/AppService.tsx';
+
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import he from 'he';
 
 export default function QuizPage() {
   const navigate = useNavigate();
@@ -54,32 +58,38 @@ export default function QuizPage() {
       >
         {quizData.length > 0 ? (
           <>
-            <Typography className="placeholder">
-              {currentQuestion?.category?.replace(/&amp;/g, '&')}
-            </Typography>
-
-            <Box className="body-container">
-              <Box className="question-container">
-                <Typography>{he.decode(currentQuestion?.question)}</Typography>
-              </Box>
+            <Box className="header">
+              <Typography className="placeholder">
+                {currentQuestion?.category?.replace(/&amp;/g, '&')}
+              </Typography>
 
               <Typography className="pagination">
                 {currentQuestionIndex + 1} / {quizData.length}
               </Typography>
             </Box>
 
+            <Divider className="divider" />
+
+            <Box className="question-container">
+              <Typography>{he.decode(currentQuestion?.question)}</Typography>
+            </Box>
+
+            <Divider className="divider" />
+
             <Box className="btn-container">
               <Button
-                className="btn-command"
+                className="btn-command correct"
                 onClick={() => handleAnswer('True')}
               >
+                <CheckOutlinedIcon className="icon" />
                 True
               </Button>
 
               <Button
-                className="btn-command"
+                className="btn-command wrong"
                 onClick={() => handleAnswer('False')}
               >
+                <ClearOutlinedIcon className="icon" />
                 False
               </Button>
             </Box>
