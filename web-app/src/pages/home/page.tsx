@@ -1,13 +1,17 @@
-import "./styles.scss";
+import './styles.scss';
 
-import { Box, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Box, Divider, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { useDispatch } from "react-redux";
-import { setCurrentQuestionIndex } from "../../redux/App/action.tsx";
+import { useDispatch } from 'react-redux';
+import { setCurrentQuestionIndex } from '../../redux/App/action.tsx';
 
-import { fetchQuizData } from "../../services/AppService.tsx";
+import { fetchQuizData } from '../../services/AppService.tsx';
+
+import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
+
+import appLogo from '../../images/logo.png';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -18,29 +22,39 @@ export default function HomePage() {
   }, []);
 
   const clearStates = () => {
-    localStorage.removeItem("correctAnswers");
-    localStorage.removeItem("userAnswers");
-    localStorage.removeItem("quizData");
+    localStorage.removeItem('correctAnswers');
+    localStorage.removeItem('userAnswers');
+    localStorage.removeItem('quizData');
     dispatch(setCurrentQuestionIndex(0));
   };
 
   return (
     <Box className="page-container">
       <Box className="home-container">
-        <Typography className="title">
-          Welcome to the <br />
-          Trivia Challenge!
-        </Typography>
+        <img src={appLogo} alt="Koda" className="logo" />
 
-        <Typography>
-          You will be presented with 10 True or False questions.
-        </Typography>
+        <Box className="title-container">
+          <Typography className="title">
+            Welcome to the Trivia Challenge!
+          </Typography>
 
-        <Typography>Can you sore 100%?</Typography>
+          <Typography className="subtitle">
+            You will be presented with 10 True or False questions.
+          </Typography>
+        </Box>
 
-        <Link className="btn-begin" to="/quiz">
-          BEGIN
-        </Link>
+        <Box className="score-container">
+          <Typography className="label">Can you sore 100%?</Typography>
+        </Box>
+
+        <Divider className="divider" />
+
+        <Box className="footer">
+          <Link className="btn-begin" to="/quiz">
+            Begin
+            <EastOutlinedIcon className="icon" />
+          </Link>
+        </Box>
       </Box>
     </Box>
   );
