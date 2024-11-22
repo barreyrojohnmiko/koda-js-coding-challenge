@@ -14,7 +14,7 @@ npm install
 ## Usage
 
 ```sh
-do cd web-app, then npm install, followed by npm run start
+do checkout to mb-dev branch, then cd web-app, then npm install, followed by npm run start. If possible, run it using Incognito to avoid any caching issues.
 ```
 
 ## Run tests
