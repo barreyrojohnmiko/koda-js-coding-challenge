@@ -1,10 +1,11 @@
 .quiz-container {
-  height: 100%;
+  flex: 1;
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  justify-content: space-between;
 
   .header {
     display: flex;

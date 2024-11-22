@@ -26,7 +26,7 @@ export default function ResultPage() {
       <Box className="result-container">
         <Typography className="placeholder">Final Results</Typography>
 
-        <Divider className="divider" />
+        <Divider className="divider-1" />
 
         <Box className="score-container">
           <Typography className="title">
@@ -34,7 +34,7 @@ export default function ResultPage() {
           </Typography>
         </Box>
 
-        <Divider className="divider" />
+        <Divider className="divider-2" />
 
         <Box className="page-body">
           <ResultListView />

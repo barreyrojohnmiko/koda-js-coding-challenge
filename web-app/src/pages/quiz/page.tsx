@@ -28,10 +28,11 @@ export default function QuizPage() {
     loadQuizData();
   }, []);
 
-  const handleAnswer = (answer: string) => {
+  const handleAnswer = async (answer: string) => {
     const correctAnswer = quizData[currentQuestionIndex].correct_answer;
 
-    dispatch(setUserAnswers([...userAnswers, answer]));
+    const updatedUserAnswers = [...userAnswers, answer];
+    dispatch(setUserAnswers(updatedUserAnswers));
 
     if (answer === correctAnswer) {
       dispatch(setCorrectAnswers(correctAnswers + 1));
@@ -40,8 +41,12 @@ export default function QuizPage() {
     if (currentQuestionIndex < quizData.length - 1) {
       dispatch(setCurrentQuestionIndex(currentQuestionIndex + 1));
     } else {
-      localStorage.setItem('correctAnswers', JSON.stringify(correctAnswers));
-      localStorage.setItem('userAnswers', JSON.stringify(userAnswers));
+      localStorage.setItem(
+        'correctAnswers',
+        JSON.stringify(correctAnswers + (answer === correctAnswer ? 1 : 0))
+      );
+      localStorage.setItem('userAnswers', JSON.stringify(updatedUserAnswers));
+
       navigate('/result');
     }
   };
@@ -58,21 +63,23 @@ export default function QuizPage() {
       >
         {quizData.length > 0 ? (
           <>
-            <Box className="header">
-              <Typography className="placeholder">
-                {currentQuestion?.category?.replace(/&amp;/g, '&')}
-              </Typography>
+            <>
+              <Box className="header">
+                <Typography className="placeholder">
+                  {currentQuestion?.category?.replace(/&amp;/g, '&')}
+                </Typography>
 
-              <Typography className="pagination">
-                {currentQuestionIndex + 1} / {quizData.length}
-              </Typography>
-            </Box>
+                <Typography className="pagination">
+                  {currentQuestionIndex + 1} / {quizData.length}
+                </Typography>
+              </Box>
 
-            <Divider className="divider" />
+              <Divider className="divider" />
 
-            <Box className="question-container">
-              <Typography>{he.decode(currentQuestion?.question)}</Typography>
-            </Box>
+              <Box className="question-container">
+                <Typography>{he.decode(currentQuestion?.question)}</Typography>
+              </Box>
+            </>
 
             <Divider className="divider" />
 

@@ -29,7 +29,7 @@ export default function HomePage() {
   };
 
   return (
-    <Box className="page-container">
+    <Box className="page-container test">
       <Box className="home-container">
         <img src={appLogo} alt="Koda" className="logo" />
 
@@ -49,7 +49,7 @@ export default function HomePage() {
 
         <Divider className="divider" />
 
-        <Box className="footer">
+        <Box className="button-container">
           <Link className="btn-begin" to="/quiz">
             Begin
             <EastOutlinedIcon className="icon" />
