@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { Box, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
 
