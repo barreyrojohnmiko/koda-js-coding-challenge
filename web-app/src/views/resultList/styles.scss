@@ -7,26 +7,27 @@
   border-right: none;
   border-top: none;
   padding: 0 0 20px 0;
-}
+  gap: 30px;
 
-.icon-correct {
-  margin-top: 4px;
-  font-size: 30px;
-  color: #4fbd1b;
-}
+  .icon-correct {
+    margin-top: 4px;
+    font-size: 30px;
+    color: #4fbd1b;
+  }
 
-.icon-wrong {
-  margin-top: 4px;
-  font-size: 30px;
-  color: #e04e10;
-}
+  .icon-wrong {
+    margin-top: 4px;
+    font-size: 30px;
+    color: #e04e10;
+  }
 
-.label-container {
-  display: flex;
-  flex-direction: column;
+  .label-container {
+    display: flex;
+    flex-direction: column;
 
-  :nth-child(2) {
-    font-size: 14px;
-    color: gray;
+    :nth-child(2) {
+      font-size: 14px;
+      color: gray;
+    }
   }
 }
