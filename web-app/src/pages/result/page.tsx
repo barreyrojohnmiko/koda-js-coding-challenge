@@ -1,6 +1,6 @@
 import './styles.scss';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import ResultListView from '../../views/resultList/ResultList.tsx';
 
 import { loadQuizData } from '../../services/AppService.tsx';
+
+import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 
 export default function ResultPage() {
   const { quizData, correctAnswers } = useSelector(
@@ -22,16 +24,25 @@ export default function ResultPage() {
   return (
     <Box className="page-container">
       <Box className="result-container">
-        <Typography className="title">
-          You scored <br /> {correctAnswers} / {quizData?.length}
-        </Typography>
+        <Typography className="placeholder">Final Results</Typography>
+
+        <Divider className="divider" />
+
+        <Box className="score-container">
+          <Typography className="title">
+            You scored {correctAnswers} / {quizData?.length}
+          </Typography>
+        </Box>
+
+        <Divider className="divider" />
 
         <Box className="page-body">
           <ResultListView />
         </Box>
 
         <Link className="btn-play-again" to="/">
-          PLAY AGAIN?
+          Play again
+          <EastOutlinedIcon className="icon" />
         </Link>
       </Box>
     </Box>

@@ -50,7 +50,7 @@ export const loadQuizData = async () => {
   }
 
   if (cachedCorrectAnswers) {
-    Store.dispatch(setCorrectAnswers(cachedCorrectAnswers));
+    Store.dispatch(setCorrectAnswers(JSON.parse(cachedCorrectAnswers)));
   } else {
     Store.dispatch(setCorrectAnswers(0));
   }
